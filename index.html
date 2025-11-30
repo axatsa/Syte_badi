@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 5px;
+            background: rgba(255,255,255,0.95);
+            padding: 6px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            color: #666;
+            font-family: inherit;
+        }
+
+        .lang-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .lang-btn.active {
+            background: #2d5a27;
+            color: white;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c43 50%, #6b9b64 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></svg>') repeat;
+            background-size: 200px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            color: white;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #fff;
+            color: #2d5a27;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .hero-image-placeholder {
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ===== PROBLEMS SECTION ===== */
+        .problems {
+            padding: 100px 0;
+            background: #f8faf7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            color: #2d5a27;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(45, 90, 39, 0.1);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(45, 90, 39, 0.15);
+        }
+
+        .problem-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2d5a27, #4a7c43);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .problem-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
+        .products-header {
+            padding: 80px 0 40px;
+            background: #fff;
+        }
+
+        .products-header .section-header {
+            margin-bottom: 0;
+        }
+
+        /* Full-screen product block */
+        .product-block {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-block:nth-child(even) {
+            background: #f8faf7;
+        }
+
+        .product-block:nth-child(even) .product-content {
+            flex-direction: row-reverse;
+        }
+
+        .product-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .product-text {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .product-text h3 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .product-text p {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 35px;
+        }
+
+        .product-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(45, 90, 39, 0.3);
+        }
+
+        .product-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(45, 90, 39, 0.4);
+        }
+
+        .product-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 550px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.15));
+            transition: transform 0.5s ease;
+        }
+
+        .product-block:hover .product-image img {
+            transform: scale(1.03) rotate(2deg);
+        }
+
+        .product-image-placeholder {
+            font-size: 12rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1024px) {
+            .product-content {
+                flex-direction: column !important;
+                text-align: center;
+                gap: 50px;
+                padding: 80px 30px;
+            }
+
+            .product-text {
+                max-width: 100%;
+            }
+
+            .product-text h3 {
+                font-size: 2.2rem;
+            }
+
+            .product-image {
+                max-width: 400px;
+            }
+
+            .product-block {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-text h3 {
+                font-size: 1.8rem;
+            }
+
+            .product-text p {
+                font-size: 1rem;
+            }
+
+            .product-image-placeholder {
+                font-size: 8rem;
+            }
+        }
+
+        /* ===== ORDER SECTION ===== */
+        .order-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%);
+            position: relative;
+        }
+
+        .order-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.03)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.03)"/></svg>') repeat;
+            background-size: 100px;
+        }
+
+        .order-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .order-text {
+            color: white;
+        }
+
+        .order-text h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .order-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .order-form-wrapper {
+            background: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+
+        .order-form h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2d5a27;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(45, 90, 39, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #aaa;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c43 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            margin-top: 10px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(45, 90, 39, 0.4);
+        }
+
+        .form-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message .checkmark {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #2d5a27, #4a7c43);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .success-message h3 {
+            color: #2d5a27;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #666;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #4a7c43;
+        }
+
+        .footer-brand p {
+            color: #999;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #4a7c43;
+        }
+
+        .footer-contact p {
+            color: #999;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-bottom p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .order-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .problems-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .order-text h2 {
+                font-size: 2rem;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-form-wrapper {
+                padding: 30px 20px;
+            }
+
+            .lang-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 4px;
+            }
+
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+
+            .hero-image-placeholder {
+                width: 280px;
+                height: 280px;
+                font-size: 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="uz">UZ</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 data-i18n="hero.title">Jigar salomatligi uchun tabiiy yechim</h1>
+                    <p data-i18n="hero.subtitle">Rastoropsha va Artishok — jigar hujayralarini tiklash, safro aylanishini yaxshilash va organizmni toksinlardan tozalash uchun tabiiy mahsulotlar.</p>
+                    <a href="#order" class="hero-btn" data-i18n="hero.cta">Buyurtma berish</a>
+                </div>
+                <div class="hero-image">
+                     <img src="photo/logo.webp" alt="Lanaya">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROBLEMS SECTION ===== -->
+    <section class="problems">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle" data-i18n="problems.subtitle">Kasalliklar</p>
+                <h2 class="section-title" data-i18n="problems.title">Sizni qiynayotgan muammolar uchun tabiiy yechim</h2>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🧪</div>
+                    <h3 data-i18n="problems.toxins.title">Toksinlar to'planishi</h3>
+                    <p data-i18n="problems.toxins.desc">Jigar faoliyati susayganda, zararli moddalar tanadan chiqmay qoladi. Bu esa charchoq, umumiy holsizlik, terining sarg'ayishi va bosh og'rig'i kabi belgilarni keltirib chiqaradi.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💚</div>
+                    <h3 data-i18n="problems.bile.title">Safro aylanishining buzilishi</h3>
+                    <p data-i18n="problems.bile.desc">Safro oqimi me'yorida bo'lmaganda, ovqat hazmi sekinlashadi. Natijada qorin dam bo'lishi, og'riq va ich qotishi kuzatiladi.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🩸</div>
+                    <h3 data-i18n="problems.blood.title">Qon ivish jarayonining izdan chiqishi</h3>
+                    <p data-i18n="problems.blood.desc">Jigar qon ivishini ta'minlovchi moddalarni ishlab chiqara olmaganda, tanada ko'karishlar paydo bo'ladi va qon ketish xavfi ortadi.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💧</div>
+                    <h3 data-i18n="problems.fluid.title">Organizmda suyuqlik to'planishi</h3>
+                    <p data-i18n="problems.fluid.desc">Jigar faoliyatining sustlashuvi qorin bo'shlig'ida suyuqlik yig'ilishiga sabab bo'ladi, bu esa shish paydo bo'lishi bilan namoyon bo'ladi.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🧠</div>
+                    <h3 data-i18n="problems.encephalopathy.title">Jigar ensefalopatiyasi</h3>
+                    <p data-i18n="problems.encephalopathy.desc">Zararli moddalar miya faoliyatiga ta'sir qilganida, odamda xotira sustlashadi, nutq buziladi, hatto hushdan ketish holatlari kuzatiladi.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⚠️</div>
+                    <h3 data-i18n="problems.cancer.title">Saraton rivojlanish xavfi</h3>
+                    <p data-i18n="problems.cancer.desc">Surunkali gepatit B yoki C infeksiyasidan keyin jigar to'qimalarining o'sma kasalliklariga aylanish ehtimoli oshadi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTS SECTION ===== -->
+    <!-- Header -->
+    <section class="products-header">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle" data-i18n="products.subtitle">Mahsulotlar</p>
+                <h2 class="section-title" data-i18n="products.title">Bizning mahsulotlar — tabiiylik va ishonch uyg'unligi</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 1: Rastoropsha -->
+    <section class="product-block">
+        <div class="product-content">
+            <div class="product-text">
+                <h3 data-i18n="products.rastoropsha.title">Rastoropsha</h3>
+                <p data-i18n="products.rastoropsha.desc">Bu jigar faoliyatini qo'llab-quvvatlovchi tabiiy giyohlar majmuasi bo'lib, uning asosiy tarkibini silibinin moddasiga boy rastoropsha o'simligi ekstrakti tashkil etadi. Ushbu modda jigar hujayralarini mustahkamlaydi, zararli moddalardan himoya qiladi va tiklanish jarayonini tezlashtiradi.</p>
+                <a href="#order" class="product-btn" data-i18n="products.buy_btn">Sotib olish</a>
+            </div>
+            <div class="product-image">
+                <img src="photo/rastoropsha.webp" alt="Rastoropsha">
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 2: Artishok -->
+    <section class="product-block">
+        <div class="product-content">
+            <div class="product-text">
+                <h3 data-i18n="products.artishok.title">Artishok</h3>
+                <p data-i18n="products.artishok.desc">Bu jigar faoliyatini tabiiy yo'l bilan qo'llab-quvvatlaydigan o'simliklardan biridir. Uning tarkibidagi sinorin moddasi safro ajralishini faollashtiradi, bu esa yog'larning parchalanishini tezlashtiradi va ularning tanada to'planib qolishini oldini oladi.</p>
+                <a href="#order" class="product-btn" data-i18n="products.buy_btn">Sotib olish</a>
+            </div>
+            <div class="product-image">
+                <img src="photo/artishok.webp" alt="Artishok">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ORDER SECTION ===== -->
+    <section class="order-section" id="order">
+        <div class="container">
+            <div class="order-content">
+                <div class="order-text">
+                    <h2 data-i18n="order.heading">Buyurtma berish</h2>
+                    <p data-i18n="order.subheading">Formani to'ldiring va biz siz bilan tez orada bog'lanamiz. Yetkazib berish butun O'zbekiston bo'ylab amalga oshiriladi.</p>
+                </div>
+                <div class="order-form-wrapper">
+                    <form id="orderForm" class="order-form">
+                        <h3 data-i18n="order.form_title">Buyurtma formasi</h3>
+                        <div class="form-group">
+                            <label for="name" data-i18n="order.name">Ismingiz</label>
+                            <input type="text" id="name" name="name" required data-i18n-placeholder="order.name_placeholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" data-i18n="order.phone">Telefon raqamingiz</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+998">
+                        </div>
+                        <div class="form-group">
+                            <label for="product" data-i18n="order.product">Mahsulotni tanlang</label>
+                            <select id="product" name="product" required>
+                                <option value="" data-i18n="order.select">Tanlang...</option>
+                                <option value="Rastoropsha" data-i18n="order.product_rastoropsha">Rastoropsha</option>
+                                <option value="Artishok" data-i18n="order.product_artishok">Artishok</option>
+                                <option value="Rastoropsha + Artishok" data-i18n="order.product_both">Rastoropsha + Artishok</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" data-i18n="order.address">Manzilingiz</label>
+                            <textarea id="address" name="address" rows="2" data-i18n-placeholder="order.address_placeholder"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit" id="submitBtn" data-i18n="order.submit">Buyurtma berish</button>
+                    </form>
+                    <div class="success-message" id="successMessage">
+                        <div class="checkmark">✓</div>
+                        <h3 data-i18n="order.success_title">Buyurtmangiz qabul qilindi!</h3>
+                        <p data-i18n="order.success_desc">Tez orada siz bilan bog'lanamiz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Lanaya</h3>
+                    <p data-i18n="footer.desc">Jigar salomatligi uchun tabiiy mahsulotlar. Sifat va ishonchlilik kafolati.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.nav">Sahifalar</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.home">Bosh sahifa</a></li>
+                        <li><a href="#order" data-i18n="footer.order">Buyurtma</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 data-i18n="footer.contact">Bog'lanish</h4>
+                    <p>📞 +998 90 123 45 67</p>
+                    <p>📧 info@lanaya.uz</p>
+                    <p>📍 Toshkent, O'zbekiston</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2024 Lanaya. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config -->
+    <script src="config.js"></script>
+
+    <script>
+        // ============================================
+        // TRANSLATIONS
+        // ============================================
+        const translations = {
+            uz: {
+                hero: {
+                    title: "Jigar salomatligi uchun tabiiy yechim",
+                    subtitle: "Rastoropsha va Artishok — jigar hujayralarini tiklash, safro aylanishini yaxshilash va organizmni toksinlardan tozalash uchun tabiiy mahsulotlar.",
+                    cta: "Buyurtma berish"
+                },
+                problems: {
+                    subtitle: "Kasalliklar",
+                    title: "Sizni qiynayotgan muammolar uchun tabiiy yechim",
+                    toxins: {
+                        title: "Toksinlar to'planishi",
+                        desc: "Jigar faoliyati susayganda, zararli moddalar tanadan chiqmay qoladi. Bu esa charchoq, umumiy holsizlik, terining sarg'ayishi va bosh og'rig'i kabi belgilarni keltirib chiqaradi."
+                    },
+                    bile: {
+                        title: "Safro aylanishining buzilishi",
+                        desc: "Safro oqimi me'yorida bo'lmaganda, ovqat hazmi sekinlashadi. Natijada qorin dam bo'lishi, og'riq va ich qotishi kuzatiladi."
+                    },
+                    blood: {
+                        title: "Qon ivish jarayonining izdan chiqishi",
+                        desc: "Jigar qon ivishini ta'minlovchi moddalarni ishlab chiqara olmaganda, tanada ko'karishlar paydo bo'ladi va qon ketish xavfi ortadi."
+                    },
+                    fluid: {
+                        title: "Organizmda suyuqlik to'planishi",
+                        desc: "Jigar faoliyatining sustlashuvi qorin bo'shlig'ida suyuqlik yig'ilishiga sabab bo'ladi, bu esa shish paydo bo'lishi bilan namoyon bo'ladi."
+                    },
+                    encephalopathy: {
+                        title: "Jigar ensefalopatiyasi",
+                        desc: "Zararli moddalar miya faoliyatiga ta'sir qilganida, odamda xotira sustlashadi, nutq buziladi, hatto hushdan ketish holatlari kuzatiladi."
+                    },
+                    cancer: {
+                        title: "Saraton rivojlanish xavfi",
+                        desc: "Surunkali gepatit B yoki C infeksiyasidan keyin jigar to'qimalarining o'sma kasalliklariga aylanish ehtimoli oshadi."
+                    }
+                },
+                products: {
+                    subtitle: "Mahsulotlar",
+                    title: "Bizning mahsulotlar — tabiiylik va ishonch uyg'unligi",
+                    buy_btn: "Sotib olish",
+                    rastoropsha: {
+                        title: "Rastoropsha",
+                        desc: "Bu jigar faoliyatini qo'llab-quvvatlovchi tabiiy giyohlar majmuasi bo'lib, uning asosiy tarkibini silibinin moddasiga boy rastoropsha o'simligi ekstrakti tashkil etadi. Ushbu modda jigar hujayralarini mustahkamlaydi, zararli moddalardan himoya qiladi va tiklanish jarayonini tezlashtiradi."
+                    },
+                    artishok: {
+                        title: "Artishok",
+                        desc: "Bu jigar faoliyatini tabiiy yo'l bilan qo'llab-quvvatlaydigan o'simliklardan biridir. Uning tarkibidagi sinorin moddasi safro ajralishini faollashtiradi, bu esa yog'larning parchalanishini tezlashtiradi va ularning tanada to'planib qolishini oldini oladi."
+                    }
+                },
+                order: {
+                    heading: "Buyurtma berish",
+                    subheading: "Formani to'ldiring va biz siz bilan tez orada bog'lanamiz. Yetkazib berish butun O'zbekiston bo'ylab amalga oshiriladi.",
+                    form_title: "Buyurtma formasi",
+                    name: "Ismingiz",
+                    name_placeholder: "Ismingizni kiriting",
+                    phone: "Telefon raqamingiz",
+                    product: "Mahsulotni tanlang",
+                    select: "Tanlang...",
+                    product_rastoropsha: "Rastoropsha",
+                    product_artishok: "Artishok",
+                    product_both: "Rastoropsha + Artishok",
+                    address: "Manzilingiz",
+                    address_placeholder: "Yetkazib berish manzilini kiriting",
+                    submit: "Buyurtma berish",
+                    sending: "Yuborilmoqda...",
+                    success_title: "Buyurtmangiz qabul qilindi!",
+                    success_desc: "Tez orada siz bilan bog'lanamiz.",
+                    error: "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+                },
+                footer: {
+                    desc: "Jigar salomatligi uchun tabiiy mahsulotlar. Sifat va ishonchlilik kafolati.",
+                    nav: "Sahifalar",
+                    home: "Bosh sahifa",
+                    order: "Buyurtma",
+                    contact: "Bog'lanish",
+                    copyright: "© 2024 Lanaya. Barcha huquqlar himoyalangan."
+                },
+                telegram: {
+                    new_order: "YANGI BUYURTMA",
+                    name: "Ism",
+                    phone: "Telefon",
+                    product: "Mahsulot",
+                    address: "Manzil",
+                    time: "Vaqt",
+                    lang: "Til",
+                    not_specified: "Ko'rsatilmagan"
+                }
+            },
+            ru: {
+                hero: {
+                    title: "Натуральное решение для здоровья печени",
+                    subtitle: "Расторопша и Артишок — натуральные продукты для восстановления клеток печени, улучшения оттока желчи и очищения организма от токсинов.",
+                    cta: "Заказать"
+                },
+                problems: {
+                    subtitle: "Заболевания",
+                    title: "Натуральное решение ваших проблем",
+                    toxins: {
+                        title: "Накопление токсинов",
+                        desc: "При снижении функции печени вредные вещества не выводятся из организма. Это приводит к усталости, общей слабости, пожелтению кожи и головным болям."
+                    },
+                    bile: {
+                        title: "Нарушение оттока желчи",
+                        desc: "При нарушении оттока желчи пищеварение замедляется. В результате появляется вздутие живота, боль и запоры."
+                    },
+                    blood: {
+                        title: "Нарушение свёртываемости крови",
+                        desc: "Когда печень не может вырабатывать вещества для свёртывания крови, на теле появляются синяки и повышается риск кровотечений."
+                    },
+                    fluid: {
+                        title: "Задержка жидкости в организме",
+                        desc: "Снижение функции печени приводит к накоплению жидкости в брюшной полости, что проявляется отёками."
+                    },
+                    encephalopathy: {
+                        title: "Печёночная энцефалопатия",
+                        desc: "Когда токсины влияют на мозг, у человека ухудшается память, нарушается речь, возможны даже обмороки."
+                    },
+                    cancer: {
+                        title: "Риск развития рака",
+                        desc: "После хронической инфекции гепатита B или C повышается вероятность развития опухолей печени."
+                    }
+                },
+                products: {
+                    subtitle: "Продукты",
+                    title: "Наши продукты — гармония природы и доверия",
+                    buy_btn: "Купить",
+                    rastoropsha: {
+                        title: "Расторопша",
+                        desc: "Это комплекс натуральных трав для поддержки печени, основу которого составляет экстракт расторопши, богатый силибинином. Это вещество укрепляет клетки печени, защищает от вредных веществ и ускоряет процесс восстановления."
+                    },
+                    artishok: {
+                        title: "Артишок",
+                        desc: "Это одно из растений, которое естественным образом поддерживает функцию печени. Содержащийся в нём цинарин активирует выделение желчи, ускоряет расщепление жиров и предотвращает их накопление в организме."
+                    }
+                },
+                order: {
+                    heading: "Оформить заказ",
+                    subheading: "Заполните форму, и мы свяжемся с вами в ближайшее время. Доставка осуществляется по всему Узбекистану.",
+                    form_title: "Форма заказа",
+                    name: "Ваше имя",
+                    name_placeholder: "Введите ваше имя",
+                    phone: "Номер телефона",
+                    product: "Выберите продукт",
+                    select: "Выберите...",
+                    product_rastoropsha: "Расторопша",
+                    product_artishok: "Артишок",
+                    product_both: "Расторопша + Артишок",
+                    address: "Ваш адрес",
+                    address_placeholder: "Введите адрес доставки",
+                    submit: "Оформить заказ",
+                    sending: "Отправка...",
+                    success_title: "Ваш заказ принят!",
+                    success_desc: "Мы свяжемся с вами в ближайшее время.",
+                    error: "Произошла ошибка. Попробуйте снова."
+                },
+                footer: {
+                    desc: "Натуральные продукты для здоровья печени. Гарантия качества и надёжности.",
+                    nav: "Страницы",
+                    home: "Главная",
+                    order: "Заказ",
+                    contact: "Контакты",
+                    copyright: "© 2024 Lanaya. Все права защищены."
+                },
+                telegram: {
+                    new_order: "НОВЫЙ ЗАКАЗ",
+                    name: "Имя",
+                    phone: "Телефон",
+                    product: "Продукт",
+                    address: "Адрес",
+                    time: "Время",
+                    lang: "Язык",
+                    not_specified: "Не указан"
+                }
+            },
+            en: {
+                hero: {
+                    title: "Natural solution for liver health",
+                    subtitle: "Milk Thistle and Artichoke — natural products for restoring liver cells, improving bile flow, and cleansing the body of toxins.",
+                    cta: "Order now"
+                },
+                problems: {
+                    subtitle: "Diseases",
+                    title: "Natural solution for your problems",
+                    toxins: {
+                        title: "Toxin accumulation",
+                        desc: "When liver function decreases, harmful substances are not eliminated from the body. This leads to fatigue, general weakness, yellowing of the skin, and headaches."
+                    },
+                    bile: {
+                        title: "Bile flow disruption",
+                        desc: "When bile flow is disrupted, digestion slows down. This results in bloating, pain, and constipation."
+                    },
+                    blood: {
+                        title: "Blood clotting disorders",
+                        desc: "When the liver cannot produce blood clotting substances, bruises appear on the body and the risk of bleeding increases."
+                    },
+                    fluid: {
+                        title: "Fluid retention",
+                        desc: "Decreased liver function leads to fluid accumulation in the abdominal cavity, which manifests as swelling."
+                    },
+                    encephalopathy: {
+                        title: "Hepatic encephalopathy",
+                        desc: "When toxins affect the brain, memory deteriorates, speech becomes impaired, and even fainting may occur."
+                    },
+                    cancer: {
+                        title: "Cancer risk",
+                        desc: "After chronic hepatitis B or C infection, the likelihood of liver tumor development increases."
+                    }
+                },
+                products: {
+                    subtitle: "Products",
+                    title: "Our products — harmony of nature and trust",
+                    buy_btn: "Buy now",
+                    rastoropsha: {
+                        title: "Milk Thistle",
+                        desc: "This is a complex of natural herbs to support the liver, based on milk thistle extract rich in silymarin. This substance strengthens liver cells, protects against harmful substances, and accelerates the recovery process."
+                    },
+                    artishok: {
+                        title: "Artichoke",
+                        desc: "This is one of the plants that naturally supports liver function. The cynarin it contains activates bile secretion, speeds up fat breakdown, and prevents their accumulation in the body."
+                    }
+                },
+                order: {
+                    heading: "Place an order",
+                    subheading: "Fill out the form and we will contact you shortly. Delivery is available throughout Uzbekistan.",
+                    form_title: "Order form",
+                    name: "Your name",
+                    name_placeholder: "Enter your name",
+                    phone: "Phone number",
+                    product: "Select product",
+                    select: "Select...",
+                    product_rastoropsha: "Milk Thistle",
+                    product_artishok: "Artichoke",
+                    product_both: "Milk Thistle + Artichoke",
+                    address: "Your address",
+                    address_placeholder: "Enter delivery address",
+                    submit: "Place order",
+                    sending: "Sending...",
+                    success_title: "Your order has been received!",
+                    success_desc: "We will contact you shortly.",
+                    error: "An error occurred. Please try again."
+                },
+                footer: {
+                    desc: "Natural products for liver health. Quality and reliability guaranteed.",
+                    nav: "Pages",
+                    home: "Home",
+                    order: "Order",
+                    contact: "Contact",
+                    copyright: "© 2024 Lanaya. All rights reserved."
+                },
+                telegram: {
+                    new_order: "NEW ORDER",
+                    name: "Name",
+                    phone: "Phone",
+                    product: "Product",
+                    address: "Address",
+                    time: "Time",
+                    lang: "Language",
+                    not_specified: "Not specified"
+                }
+            }
+        };
+
+        // Current language
+        let currentLang = (typeof CONFIG !== 'undefined' && CONFIG.DEFAULT_LANGUAGE) ? CONFIG.DEFAULT_LANGUAGE : 'uz';
+
+        // Get nested translation
+        function getTranslation(key, lang) {
+            const keys = key.split('.');
+            let value = translations[lang];
+            for (const k of keys) {
+                if (value && value[k]) {
+                    value = value[k];
+                } else {
+                    return null;
+                }
+            }
+            return value;
+        }
+
+        // Apply translations
+        function applyTranslations(lang) {
+            currentLang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const translation = getTranslation(key, lang);
+                if (translation) {
+                    el.textContent = translation;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                const translation = getTranslation(key, lang);
+                if (translation) {
+                    el.placeholder = translation;
+                }
+            });
+
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            localStorage.setItem('lanaya-lang', lang);
+        }
+
+        // Language switcher
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyTranslations(btn.dataset.lang);
+            });
+        });
+
+        // Load saved language
+        const savedLang = localStorage.getItem('lanaya-lang');
+        if (savedLang && translations[savedLang]) {
+            applyTranslations(savedLang);
+        } else {
+            applyTranslations(currentLang);
+        }
+
+        // ============================================
+        // FORM SUBMISSION TO TELEGRAM
+        // ============================================
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('orderForm');
+            const successMessage = document.getElementById('successMessage');
+            const t = translations[currentLang].telegram;
+            const o = translations[currentLang].order;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = o.sending;
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const product = document.getElementById('product').value;
+            const address = document.getElementById('address').value || t.not_specified;
+
+            const message = `
+🛒 *${t.new_order}*
+
+👤 *${t.name}:* ${name}
+📞 *${t.phone}:* ${phone}
+📦 *${t.product}:* ${product}
+📍 *${t.address}:* ${address}
+
+⏰ *${t.time}:* ${new Date().toLocaleString()}
+🌐 *${t.lang}:* ${currentLang.toUpperCase()}
+            `.trim();
+
+            try {
+                if (typeof CONFIG === 'undefined' || !CONFIG.TELEGRAM_BOT_TOKEN || CONFIG.TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE') {
+                    console.log('Demo mode - Order:', { name, phone, product, address });
+                    form.style.display = 'none';
+                    successMessage.classList.add('show');
+                    return;
+                }
+
+                const response = await fetch(`https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CONFIG.TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.ok) {
+                    form.style.display = 'none';
+                    successMessage.classList.add('show');
+                } else {
+                    throw new Error(result.description);
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert(o.error);
+                submitBtn.disabled = false;
+                submitBtn.textContent = o.submit;
+            }
+        });
+
+        // Phone formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0 && !value.startsWith('998')) {
+                if (value.startsWith('9')) value = '998' + value;
+            }
+            if (value.length > 12) value = value.slice(0, 12);
+            if (value.length > 0) {
+                let formatted = '+' + value.slice(0, 3);
+                if (value.length > 3) formatted += ' ' + value.slice(3, 5);
+                if (value.length > 5) formatted += ' ' + value.slice(5, 8);
+                if (value.length > 8) formatted += ' ' + value.slice(8, 10);
+                if (value.length > 10) formatted += ' ' + value.slice(10, 12);
+                e.target.value = formatted;
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
