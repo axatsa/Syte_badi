@@ -8,7 +8,7 @@ const CONFIG = {
     TELEGRAM_BOT_TOKEN: '',
 
     // Guruh yoki kanal ID (masalan: -1001234567890)
-    TELEGRAM_CHAT_ID: '',
+    TELEGRAM_CHAT_ID: '-',
 
     // Standart til (uz, ru, en)
     DEFAULT_LANGUAGE: 'uz'
